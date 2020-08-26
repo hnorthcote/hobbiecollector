@@ -78,9 +78,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'hobbiecollector',
-        'USERNAME': 'Henry_Northcote',
-        'PASSWORD': '820AdamsST',
-    }
+    },
 }
 
 
