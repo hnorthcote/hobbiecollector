@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-    <title>Hobbies</title>
+    <title>Hobbies Collector</title>
 </head>
 <body>
     <header>
@@ -20,7 +20,10 @@
                 </ul>
                 <ul class="right">
                     <li>
-                        <a href="/hobbies" class="hoverable z-depth blue-grey lighten-1"> View all my Hobbies</a>
+                        <a href="{% url 'about' %}">About</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'hobbies' %}" class="hoverable z-depth blue-grey lighten-1"> View all my Hobbies</a>
                     </li>
                 </ul>
             </div>

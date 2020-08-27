@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Hobby Details</h1>
+
+
+
+    <div class="card">
+        <div class="card-content">
+            <h3 class="card-title">{{ hobby.name}}</h3>
+            <h6>Level(0-10): {{hobby.level}} </h6>
+            <h6>Regularity: {{hobby.regularity}} </h6>
+            <h6>Active Hobby: {{hobby.active}} </h6>
+            <p>Reason why I started: {{hobby.reason}}</p>
+            {% if hobby.level >= 7 %}
+            <p>This one of my favorite things to do!!</p>
+            {% elif 3 < hobby.level < 7 %}
+            <p>I like to do this every now and then.</p>
+            {% else %}
+            <p>I am just getting into this.</p>
+            {% endif %}
+        </div>    
+    </div>
+
+
+{% endblock %}
