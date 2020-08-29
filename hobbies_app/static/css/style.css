@@ -12,7 +12,11 @@ footer {
     text-align: right;
 }
 
-input[type="checkbox"] { 
+[type="checkbox"] { 
     opacity: 1 !important;
-    pointer-events: auto !important;
+    pointer-events: all !important;
+}
+
+select { 
+    display: block !important;
 }

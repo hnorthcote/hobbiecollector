@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Hobby, Friend
+from .models import Hobby, Friend, FriendForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # Create your views here.
@@ -58,8 +58,8 @@ def friends_index(request):
 
 
 class FriendCreate(CreateView):
-  model = Friend
-  fields = '__all__' 
+  form_class = FriendForm
+  template_name = "hobbies_app/friend_form.html"
 class FriendUpdate(UpdateView):
   model = Friend
   fields = "__all__"
