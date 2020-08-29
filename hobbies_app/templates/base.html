@@ -20,10 +20,19 @@
                 </ul>
                 <ul class="right">
                     <li>
-                        <a href="{% url 'about' %}">About</a>
+                        <a href="{% url 'about' %}" class="hoverable z-depth blue-grey darken-1">About</a>
                     </li>
                     <li>
-                        <a href="{% url 'hobbies' %}" class="hoverable z-depth blue-grey lighten-1"> View all my Hobbies</a>
+                        <a href="{% url 'hobbies' %}" class="hoverable z-depth blue-grey"> View all my Hobbies</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'hobbies_create' %}" class="hoverable z-depth blue-grey">Add a Hobby</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'friends_create' %}" class="hoverable z-depth blue-grey lighten-1">Add a Friend</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'friends_index' %}" class="hoverable z-depth blue-grey lighten-1">View All my Friends</a>    
                     </li>
                 </ul>
             </div>

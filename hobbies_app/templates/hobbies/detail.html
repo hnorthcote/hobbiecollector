@@ -20,7 +20,11 @@
             {% else %}
             <p>I am just getting into this.</p>
             {% endif %}
-        </div>    
+        </div>
+        <div class="card-action">
+            <a href="{% url 'hobbies_update' cat.id %}">Update</a>
+            <a href="{% url 'hobbies_delete' cat.id %}">Delete</a>
+        </div>
     </div>
 
 

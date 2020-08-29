@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+  
+{% block content %}
+
+<h1>Friends</h1>
+{% for friend in friends %}
+<div class="card">   
+        <div class="card-content">
+            <span class="card-title">{{ friend.name }}</span>
+            <p>Friendship: {{ friend.friendship }}</p>
+         </div>
+         <div class="card-action">
+            <a href="{% url 'friends_update' friend.id %}">Update</a>
+            <a href="{% url 'friends_delete' friend.id %}">Delete</a>
+        </div>    
+</div>
+{% endfor %}
+
+{% endblock %}
