@@ -2,7 +2,7 @@ from django.db import models
 from django import forms
 from django.core.validators import MaxValueValidator, MinValueValidator, MinLengthValidator
 from django.urls import reverse
-FRIENDSHIP_CHOICES = [("Old Friend", "OLD FRIEND"), ("Close Friend", "CLOSE FRIEND"), ("Occasional Friend", "OCCASIONAL FRIEND")]
+FRIENDSHIP_CHOICES = [("Old Friend", "OLD FRIEND"), ("Close Friend", "CLOSE FRIEND"), ("Good Friend", "GOOD FRIEND"), ("New Friend", "NEW FRIEND"),]
 
 # Create your models here.
 class Hobby(models.Model):
@@ -21,7 +21,7 @@ class Hobby(models.Model):
 
 class Friend(models.Model):
     name = models.CharField(max_length=50)
-    friendship = models.CharField(max_length=100, choices=FRIENDSHIP_CHOICES)
+    friendship = models.CharField(max_length=100, choices=FRIENDSHIP_CHOICES, default="GOOD FRIEND")
 
 
     def __str__(self):
