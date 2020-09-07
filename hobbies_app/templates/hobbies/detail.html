@@ -6,26 +6,59 @@
 
 
 
-    <div class="card">
-        <div class="card-content">
-            <h3 class="card-title">{{ hobby.name}}</h3>
-            <h6>Level(0-10): {{hobby.level}} </h6>
-            <h6>Regularity: {{hobby.regularity}} </h6>
-            <h6>Active Hobby: {{hobby.active}} </h6>
-            <p>Reason why I started: {{hobby.reason}}</p>
-            {% if hobby.level >= 7 %}
-            <p>This one of my favorite things to do!!</p>
-            {% elif 3 < hobby.level < 7 %}
-            <p>I like to do this every now and then.</p>
-            {% else %}
-            <p>I am just getting into this.</p>
-            {% endif %}
+<div class="row">
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content">
+                <h3 class="card-title">{{ hobby.name}}</h3>
+                <h6>Level(0-10): {{hobby.level}} </h6>
+                <h6>Regularity: {{hobby.regularity}} </h6>
+                <h6>Active Hobby: {{hobby.active}} </h6>
+                <p>Reason why I started: {{hobby.reason}}</p>
+                {% if hobby.level >= 7 %}
+                <p>This one of my favorite things to do!!</p>
+                {% elif 3 < hobby.level < 7 %}
+                <p>I like to do this every now and then.</p>
+                {% else %}
+                <p>I am just getting into this.</p>
+                {% endif %}
+            </div>
+            <div class="card-action">
+                <a href="{% url 'hobbies_update' hobby.id %}">Update</a>
+                <a href="{% url 'hobbies_delete' hobby.id %}">Delete</a>
+            </div>
         </div>
-        <div class="card-action">
-            <a href="{% url 'hobbies_update' hobby.id %}">Update</a>
-            <a href="{% url 'hobbies_delete' hobby.id %}">Delete</a>
-        </div>
+        {% for photo in hobby.photo_set.all %}
+            <img src="{{photo.url}}" class="responsive-img card-panel">
+        {% empty %}
+            <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+        {% endfor %}
+        <form action="{% url 'add_photo' hobby.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+            {% csrf_token %}
+            <input type="file" name="photo-file">
+            <br><br>
+            <input type="submit" class="btn" value="Upload Photo">
+        </form>
     </div>
+    <div class="col s6">
+        
+        <form action="{% url 'activities_create' %}" method="post">
+          {% csrf_token %}
+          {{ activity_form.as_p }}
+          <input type="submit" class="btn" value="Add Activity">
+        </form>
+</div>    
 
-
+<script>
+    console.log('script started')
+    const dateEL = document.getElementById('id_date');
+    M.Datepicker.init(dateEL, {
+      format:'yyyy-mm-dd',
+      defaultDate: new Date(),
+      setDefaultDate: true,
+      autoClose: true
+    })
+  
+</script>    
 {% endblock %}
+

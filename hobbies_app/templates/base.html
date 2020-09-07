@@ -17,23 +17,40 @@
                     <li>
                         <a href="/" class="left brand-logo">&nbsp;&nbsp;Hobby Collector</a>
                     </li>
+                    <li>
+                        {% if user.is_authenticated %}
+                       <h4 class="center brand-logo" >Welcome! {{ request.user }}</h4>
+                       {% endif %}
+                    </li>
                 </ul>
                 <ul class="right">
                     <li>
                         <a href="{% url 'about' %}" class="hoverable z-depth blue-grey darken-1">About</a>
                     </li>
-                    <li>
-                        <a href="{% url 'hobbies' %}" class="hoverable z-depth blue-grey"> View all my Hobbies</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'hobbies_create' %}" class="hoverable z-depth blue-grey">Add a Hobby</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'friends_create' %}" class="hoverable z-depth blue-grey lighten-1">Add a Friend</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'friends_index' %}" class="hoverable z-depth blue-grey lighten-1">View All my Friends</a>    
-                    </li>
+                    {% if user.is_authenticated %}
+                        <li>
+                            <a href="{% url 'hobbies' %}" class="hoverable z-depth blue-grey"> View all my Hobbies</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'hobbies_create' %}" class="hoverable z-depth blue-grey">Add a Hobby</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'friends_create' %}" class="hoverable z-depth blue-grey lighten-1">Add a Friend</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'friends_index' %}" class="hoverable z-depth blue-grey lighten-1">View All my Friends</a>    
+                        </li>
+                        <li>
+                            <a href="{% url 'logout' %}">Log Out</a>    
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{% url 'login' %}">Log In</a>    
+                        </li>
+                        <li>
+                            <a href="{% url 'signup' %}">Sign Up</a>    
+                        </li>
+                   {% endif %}
                 </ul>
             </div>
         </nav>
