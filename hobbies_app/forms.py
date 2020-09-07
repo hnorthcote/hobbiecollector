@@ -4,7 +4,7 @@ from .models import Activity
 
 class ActivityForm(ModelForm):
         class Meta:
-                model = Friend
+                model = Activity
                 fields = ['name', 'date']
 
 

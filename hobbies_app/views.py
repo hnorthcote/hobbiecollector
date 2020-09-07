@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Hobby, Friend, Photo
+from .models import Hobby, Friend, Activity, Photo
 from .forms import ActivityForm
 import uuid
 import boto3
@@ -49,7 +49,7 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 @login_required
-def add_photo(request, _id):
+def add_photo(request, hobby_id):
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
         s3 = boto3.client('s3')
@@ -79,7 +79,7 @@ def hobbies_index(request):
 @login_required
 def hobbies_detail(request, hobby_id):
     hobby = Hobby.objects.get(id=hobby_id)
-    friends_not_related = Friend.objects.exclude(id_in=hobby.friends.all().values_list('id'))
+    friends_not_related = Friend.objects.exclude(id__in=hobby.friends.all().values_list('id'))
     activity_form = ActivityForm()
     return render(request, 'hobbies/detail.html', { 'hobby': hobby, 'activity_form': activity_form, 'friends': friends_not_related,},)
 

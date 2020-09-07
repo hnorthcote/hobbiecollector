@@ -36,6 +36,8 @@ class Hobby(models.Model):
         return self.name
     def get_absolute_url(self):
         return reverse('detail', kwargs={'hobby_id': self.id})
+    def activities_for_hobby(self):
+        return self.activity_set.filter(hobby=self.id)
 ## for class based views
  
 
@@ -47,7 +49,7 @@ class Activity(models.Model):
         return self.name
 
     class Meta:
-        ordering: = ['-date']
+        ordering = ['-date']
 
 
 class Photo(models.Model):
