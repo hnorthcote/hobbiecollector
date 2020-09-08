@@ -5,6 +5,7 @@ from .forms import ActivityForm
 import uuid
 import boto3
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -74,7 +75,7 @@ def home(request):
 
 @login_required
 def hobbies_index(request):
-    hobbies = Hobby.objects.all()
+    hobbies = Hobby.objects.filter(user=request.user)
     return render(request, 'hobbies/index.html', { 'hobbies': hobbies})
 
 @login_required
@@ -106,7 +107,7 @@ class HobbyDelete(LoginRequiredMixin, DeleteView):
 
 @login_required
 def friends_index(request):
-    friends = Friend.objects.all()
+    friends = Friend.objects.filter(user=request.user)
     return render(request,'friends/index.html', {'friends': friends})
 
 @login_required
@@ -121,9 +122,14 @@ def disconnect_friend(request, hobby_id, friend_id):
 class FriendCreate(LoginRequiredMixin, CreateView):
   model = Friend
   fields = ['name', 'friendship']
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+
 class FriendUpdate(LoginRequiredMixin, UpdateView):
   model = Friend
   fields = ['name', 'friendship']
+
 class FriendDelete(LoginRequiredMixin, DeleteView):
   model = Friend
   success_url ='/friends/'
