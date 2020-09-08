@@ -12,6 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 S3_BASE_URL = "https://hobby-collector.s3.amazonaws.com/"
+BUCKET = ""
 
 # Create your views here.
 
@@ -53,11 +54,11 @@ def add_photo(request, hobby_id):
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
         s3 = boto3.client('s3')
-        # need a unique "key" for S3 / needs image file extension too
+       
         key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
         try:
             s3.upload_fileobj(photo_file, BUCKET, key)
-            url = f"{S3_BASE_URL}/{key}"
+            url = f"{S3_BASE_URL}{key}"
             photo = Photo(url=url, hobby_id=hobby_id)
             photo.save()
         except:
