@@ -29,7 +29,7 @@
             </div>
         </div>
         {% for photo in hobby.photo_set.all %}
-            <img src="{{photo.url}}" class="responsive-img card-panel">
+            <img class="responsive-img card-panel" src="{{photo.url}}" >
         {% empty %}
             <div class="card-panel teal-text center-align">No Photos Uploaded</div>
         {% endfor %}

@@ -11,8 +11,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-S3_BASE_URL = "https://hobby-collector.s3.amazonaws.com/"
-BUCKET = ""
+S3_BASE_URL = "https://hobby-collector.s3.us-east-2.amazonaws.com/"
+BUCKET = "hobby-collector"
 
 # Create your views here.
 
